@@ -30,45 +30,44 @@ exports.createUser = (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   // deconstruct request params
-  const { userID } = req.params;
+  const { userId } = req.params;
 
   try {
     // delete all records
-    account.deleteMany({ user: userID }).exec();
-    account_group.deleteMany({ user: userID }).exec();
-    expense_category.deleteMany({ user: userID }).exec();
-    expense_subcategory.deleteMany({ user: userID }).exec();;
-    income_category.deleteMany({ user: userID }).exec();
-    income_subcategory.deleteMany({ user: userID }).exec();
-    transaction.deleteMany({ user: userID }).exec();
-    user.deleteOne({ _id: userID }).exec();
+    account.deleteMany({ user: userId }).exec();
+    account_group.deleteMany({ user: userId }).exec();
+    expense_category.deleteMany({ user: userId }).exec();
+    expense_subcategory.deleteMany({ user: userId }).exec();;
+    income_category.deleteMany({ user: userId }).exec();
+    income_subcategory.deleteMany({ user: userId }).exec();
+    transaction.deleteMany({ user: userId }).exec();
+    user.deleteOne({ _id: userId }).exec();
+    return res.status(200).json({ message: `user ${userId} is deleted` });
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });
   }
-
-  return res.status(200).json({ message: `user ${userID} is deleted` });
 }
 
 exports.getUser = async (req, res) => {
   // deconstruct request params
-  const { userID } = req.params;
+  const { userId } = req.params;
 
   try {
-    const result = await user.findById({ _id: userID }).exec()
+    const result = await user.findById({ _id: userId }).exec()
     return res.status(200).json({ message: `success get user ${result._id}`, user: result });
   }catch(error){
-    return res.status(500).json({ message: `cannot find user ${userID}` });
+    return res.status(500).json({ message: `cannot find user ${userId}` });
   }
 }
 
 exports.updateUser = async (req, res) => {
   // deconstruct request params
-  const { userID } = req.params;
+  const { userId } = req.params;
   // deconstruct request body
   const { firstName, lastName, email, phone } = req.body;
   console.log(req.body)
   try {
-    const result = await user.findByIdAndUpdate(userID, {
+    const result = await user.findByIdAndUpdate(userId, {
       firstName: firstName, 
       lastName: lastName, 
       email: email, 
@@ -76,6 +75,6 @@ exports.updateUser = async (req, res) => {
     }).exec();
     return res.status(200).json({ message: `success update user ${result._id}`, user: result });
   }catch(error){
-    return res.status(500).json({ message: `error updating user ${userID}` });
+    return res.status(500).json({ message: `error updating user ${userId}` });
   }
 }

@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { createUser, deleteUser, getUser, updateUser } = require("../controller/user");
+const { createUser, 
+        deleteUser,
+        getUser, 
+        updateUser 
+    } = require("../controller/user");
 
 /**
  * @swagger
@@ -61,7 +65,7 @@ const { createUser, deleteUser, getUser, updateUser } = require("../controller/u
  *              schema:
  *                message: string
  *       409:
- *         description: conflict create user
+ *         description: conflict create account group
  *         contents:
  *            application/json:
  *              schema:
@@ -77,25 +81,19 @@ router.post("/user", createUser);
 
 /**
  * @swagger
- * /user/{userID}:
+ * /user/{userId}:
  *   delete:
  *     summary: Delete a user
  *     parameters:
  *       - in: path
- *         name: userID
+ *         name: userId
  *         schema:
  *           type: string
  *           required: true
  *     tags: [User]
  *     responses:
  *       200:
- *         description: success create user
- *         contents:
- *            application/json:
- *              schema:
- *                message: string
- *       409:
- *         description: conflict create user
+ *         description: success delete user
  *         contents:
  *            application/json:
  *              schema:
@@ -107,16 +105,16 @@ router.post("/user", createUser);
  *              schema:
  *                message: string
  */
-router.delete("/user/:userID", deleteUser);
+router.delete("/user/:userId", deleteUser);
 
 /**
  * @swagger
- * /user/{userID}:
+ * /user/{userId}:
  *   get:
  *     summary: Get personal data of a user 
  *     parameters:
  *       - in: path
- *         name: userID
+ *         name: userId
  *         schema:
  *           type: string
  *           required: true
@@ -135,16 +133,16 @@ router.delete("/user/:userID", deleteUser);
  *              schema:
  *                message: string
  */
-router.get("/user/:userID", getUser);
+router.get("/user/:userId", getUser);
 
 /**
  * @swagger
- * /user/{userID}:
+ * /user/{userId}:
  *   put:
  *     summary: Get personal data of a user 
  *     parameters:
  *       - in: path
- *         name: userID
+ *         name: userId
  *         schema:
  *           type: string
  *           required: true
@@ -184,6 +182,6 @@ router.get("/user/:userID", getUser);
  *              schema:
  *                message: string
  */
-router.put("/user/:userID", updateUser);
+router.put("/user/:userId", updateUser);
 
 module.exports = router;

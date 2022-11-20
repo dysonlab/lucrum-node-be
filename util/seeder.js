@@ -1,8 +1,8 @@
 const { faker } = require("@faker-js/faker")
 
 class Seeder {
-    constructor(userID) {
-        this.userID = userID;
+    constructor(userId) {
+        this.userId = userId;
         this.accoutGroup = [
             {
                 user: "Seed",
@@ -224,7 +224,7 @@ class Seeder {
     seedAccoutGroup() {
         // console.log("seedAccountGroup");
         this.accoutGroup = this.accoutGroup.map((eachAccountGroup) => {
-            eachAccountGroup.user = this.userID;
+            eachAccountGroup.user = this.userId;
             return eachAccountGroup;
         });
         // console.log(this.accoutGroup);
@@ -233,7 +233,7 @@ class Seeder {
     seedAccount() {
         // console.log("seedAccount");
         this.account = this.account.map((eachAccount) => {
-            eachAccount.user = this.userID;
+            eachAccount.user = this.userId;
             const filteredAccountGroup = this.accoutGroup.filter((eachAccountGroup) => {
                 return eachAccountGroup.name === eachAccount.accountGroup;
             })
@@ -259,7 +259,7 @@ class Seeder {
     seedExpenseCategory() {
         // console.log("seedExpense")
         this.expenseCategory = this.expenseCategory.map((eachExpenseCategory) => {
-            eachExpenseCategory.user = this.userID;
+            eachExpenseCategory.user = this.userId;
             return eachExpenseCategory;
         });
         // console.log(this.expenseCategory);
@@ -268,7 +268,7 @@ class Seeder {
     seedExpenseSubcategory() {
         // console.log("seedExpenseSubcategory");
         this.expenseSubcategory = this.expenseSubcategory.map((eachExpenseSubcategory) => {
-            eachExpenseSubcategory.user = this.userID;
+            eachExpenseSubcategory.user = this.userId;
             const filteredExpenseCategory = this.expenseCategory.filter((eachExpenseCategory) => {
                 return eachExpenseCategory.name === eachExpenseSubcategory.expenseCategory;
             })
@@ -293,7 +293,7 @@ class Seeder {
     seedIncomeCategory() {
         // console.log("seedIncome")
         this.incomeCategory = this.incomeCategory.map((eachIncomeCategory) => {
-            eachIncomeCategory.user = this.userID;
+            eachIncomeCategory.user = this.userId;
             return eachIncomeCategory;
         });
         // console.log(this.incomeCategory);
@@ -322,7 +322,7 @@ class Seeder {
                 0));
 
             var eachTransaction = {
-                user: this.userID,
+                user: this.userId,
                 date: eachDate,
                 account: randomAccount._id,
                 expenseAmount: amount,
@@ -352,7 +352,7 @@ class Seeder {
         transactions[1].account = this.account[1]._id // BCA account
         
         // generate expense: housing
-        transactions[1].expenseCategory = this.expenseCategory[3]._id // Insurance
+        transactions[1].expenseCategory = this.expenseCategory[3]._id // housing
         transactions[1].expenseAmount = 2000000
         transactions[1].account = this.account[3]._id // CIMB account
 

@@ -3,8 +3,8 @@ const Seeder = require("../util/seeder");
 
 exports.populate = async (req, res) => {
     // deconstruct request body
-    const { userID } = req.body;
-    const userSeed = new Seeder(userID);
+    const { userId } = req.body;
+    const userSeed = new Seeder(userId);
 
     userSeed.seedAccoutGroup()
     userSeed.accoutGroup = await account_group.insertMany(userSeed.accoutGroup);
@@ -35,14 +35,14 @@ exports.populate = async (req, res) => {
 exports.terminate = async (req, res) => {
     console.log("terminate seed");
 
-    const { userID } = req.body;
-    account.deleteMany({ user: userID }).exec();
-    account_group.deleteMany({ user: userID }).exec();
-    expense_category.deleteMany({ user: userID }).exec();
-    expense_subcategory.deleteMany({ user: userID }).exec();;
-    income_category.deleteMany({ user: userID }).exec();
-    income_subcategory.deleteMany({ user: userID }).exec();
-    transaction.deleteMany({ user: userID }).exec();
+    const { userId } = req.body;
+    account.deleteMany({ user: userId }).exec();
+    account_group.deleteMany({ user: userId }).exec();
+    expense_category.deleteMany({ user: userId }).exec();
+    expense_subcategory.deleteMany({ user: userId }).exec();;
+    income_category.deleteMany({ user: userId }).exec();
+    income_subcategory.deleteMany({ user: userId }).exec();
+    transaction.deleteMany({ user: userId }).exec();
 
     return res.status(200).json({ message: "seed terminated" });
 }
