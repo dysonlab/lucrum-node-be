@@ -1,6 +1,6 @@
 const {account} = require("../model");
 
-exports.createAccount = (req, res) => {
+exports.createAccount = async (req, res) => {
   // deconstruct request body
   const {user, accountGroup, name, amount, description} = req.body;
   console.log(req.body);
@@ -26,3 +26,49 @@ exports.createAccount = (req, res) => {
     }
   });
 };
+
+exports.deleteAccount = async (req, res) => {
+  // deconstruct request params
+  const { accountId } = req.params;
+
+  try{
+    await account.deleteOne({ _id: accountId}).exec();
+    return res.status(200).json({message: `account ${accountId} is deleted`})
+  }catch(error){
+    console.log(error)
+    return res.status(500).json({ message: "internal server error" });
+  }
+}
+
+exports.getAccount = async (req, res) => {
+  // deconstruct request params
+  const { userId } = req.params;
+
+  try{
+    const result = await account.find({user:userId}).exec()
+    return res.status(200).json({ message: `success get account`, account: result });
+  }catch(error){
+    console.log(error)
+    return res.status(500).json({ message: `cannot find account from user ${userId}` });
+  }
+}
+
+exports.updateAccount = async (req, res) => {
+  // deconstruct request params
+  const { accountId } = req.params;
+  // deconstruct request body
+  const { accountGroup, name, amount, description } = req.body;
+  
+  try{
+    const result = await account.findByIdAndUpdate(accountId, {
+      accountGroup: accountGroup,
+      name: name,
+      amount: amount,
+      description: description
+    }, {new: true}).exec()
+    return res.status(200).json({ message: `success update account ${result._id}`, account: result });
+  }catch(error){
+    console.log(error)
+    return res.status(500).json({ message: `error updating account ${accountId}` });
+  }
+} 
