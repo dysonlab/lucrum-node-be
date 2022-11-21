@@ -4,8 +4,8 @@ const {Schema} = mongoose;
 const accountSchema = new Schema({
   user: Schema.Types.ObjectId,
   accountGroup: Schema.Types.ObjectId,
-  name: {type: String, unique: true},
-  amout: Number,
+  name: String,
+  amount: Number,
   description: String,
 });
 

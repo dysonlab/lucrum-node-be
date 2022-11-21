@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const transactionSchema = new Schema({
-  user: { type: Schema.Types.Mixed, required: true },
+  user: { type: Schema.Types.ObjectId, required: true },
   account: { type: Schema.Types.Mixed, required: true },
   date: Number,
   expenseAmount: { type: Number, required: false },
