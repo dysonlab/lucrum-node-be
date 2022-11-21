@@ -81,7 +81,7 @@ router.post("/account-group", createAccountGroup);
  *     tags: [Account Group]
  *     responses:
  *       200:
- *         description: success delete user
+ *         description: success delete account group
  *         contents:
  *            application/json:
  *              schema:
@@ -136,7 +136,7 @@ router.get("/account-group/:userId", getAccountGroup);
  *           required: true
  *     tags: [Account Group]
  *     requestBody:
- *       description: Payload data to update accont group
+ *       description: Payload data to update account group
  *       required: true
  *       content:
  *         application/json:
@@ -149,7 +149,7 @@ router.get("/account-group/:userId", getAccountGroup);
  *               name: Debit Card
  *     responses:
  *       200:
- *         description: success create user
+ *         description: success update account group
  *         contents:
  *            application/json:
  *              schema:

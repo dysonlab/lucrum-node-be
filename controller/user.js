@@ -34,14 +34,14 @@ exports.deleteUser = async (req, res) => {
 
   try {
     // delete all records
-    account.deleteMany({ user: userId }).exec();
-    account_group.deleteMany({ user: userId }).exec();
-    expense_category.deleteMany({ user: userId }).exec();
-    expense_subcategory.deleteMany({ user: userId }).exec();;
-    income_category.deleteMany({ user: userId }).exec();
-    income_subcategory.deleteMany({ user: userId }).exec();
-    transaction.deleteMany({ user: userId }).exec();
-    user.deleteOne({ _id: userId }).exec();
+    await account.deleteMany({ user: userId }).exec();
+    await account_group.deleteMany({ user: userId }).exec();
+    await expense_category.deleteMany({ user: userId }).exec();
+    await expense_subcategory.deleteMany({ user: userId }).exec();;
+    await income_category.deleteMany({ user: userId }).exec();
+    await income_subcategory.deleteMany({ user: userId }).exec();
+    await transaction.deleteMany({ user: userId }).exec();
+    await user.deleteOne({ _id: userId }).exec();
     return res.status(200).json({ message: `user ${userId} is deleted` });
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });

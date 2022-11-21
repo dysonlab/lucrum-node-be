@@ -28,7 +28,7 @@ exports.deleteAccoutGroup = async (req, res) => {
   const { accountGroupId } = req.params;
 
   try{
-    account_group.deleteMany({ _id: accountGroupId }).exec();
+    await account_group.deleteOne({ _id: accountGroupId }).exec();
     return res.status(200).json({ message: `account group ${accountGroupId} is deleted`});
   } catch (error){
     return res.status(500).json({ message: "internal server error" });
@@ -38,7 +38,7 @@ exports.deleteAccoutGroup = async (req, res) => {
 exports.getAccountGroup = async (req, res) => {
   // deconstruct request params
   const { userId } = req.params;
-  console.log(userId)
+  
   try{
     const result = await account_group.find({user:userId}).exec()
     return res.status(200).json({ message: `success get account groups`, accountGroup: result });
@@ -56,7 +56,7 @@ exports.updateAccountGroup = async (req, res) => {
   try{
     const result = await account_group.findByIdAndUpdate(accountGroupId, {
       name: name
-    }).exec()
+    }, {new: true}).exec()
     return res.status(200).json({ message: `success update account group ${result._id}`, account_group: result });
   }catch(error){
     console.log(error)
