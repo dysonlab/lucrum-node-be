@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const {
-        createAccount,
-        deleteAccount,
-        getAccount,
-        updateAccount
-    } = require("../controller/account");
+    createAccount,
+    deleteAccount,
+    getAccount,
+    updateAccount
+} = require("../controller/account");
 
 /**
  * @swagger
@@ -35,7 +35,7 @@ const {
  *         accountGroup: 6357d54aede8984311ef1018
  *         name: BCA
  *         description: This is Bank Central Asia debit card account
- */ 
+ */
 
 /**
  * @swagger
@@ -47,35 +47,35 @@ const {
 /**
  * @swagger
  * /account:
- *    post:
+ *   post:
  *     summary: Create an account
  *     tags: [Account]
- *     requesBody:
+ *     requestBody:
  *       description: Payload data to create an account
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/accountGroup'
- *    responses:
- *      200:
- *        description: success create account
- *        contents:
- *           application/json:
- *             schema:
- *               message: string
- *      409:
- *        description: conflict create account group
- *        contents:
- *           application/json:
- *             schema:
- *               message: string
- *      500:
- *        description: internal server error
- *        contents:
- *           application/json:
- *             schema: 
- *               message: string
+ *             $ref: '#/components/schemas/account'
+ *     responses:
+ *       200:
+ *         description: success create user
+ *         contents:
+ *            application/json:
+ *              schema:
+ *                message: string
+ *       409:
+ *         description: conflict create account group
+ *         contents:
+ *            application/json:
+ *              schema:
+ *                message: string
+ *       500:
+ *         description: internal server error
+ *         contents:
+ *            application/json:
+ *              schema:
+ *                message: string
  */
 router.post("/account", createAccount);
 
@@ -183,6 +183,6 @@ router.get("/account/:userId", getAccount);
  *              schema:
  *                message: string
  */
- router.put("/account/:accountId", updateAccount);
+router.put("/account/:accountId", updateAccount);
 
 module.exports = router;

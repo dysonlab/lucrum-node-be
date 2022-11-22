@@ -36,10 +36,10 @@ const { createAccountGroup,
  * @swagger
  * /account-group:
  *   post:
- *     summary: Create a user
+ *     summary: Create an account group
  *     tags: [Account Group]
  *     requestBody:
- *       description: Payload data to create a user
+ *       description: Payload data to create an account group
  *       required: true
  *       content:
  *         application/json:
@@ -47,7 +47,7 @@ const { createAccountGroup,
  *             $ref: '#/components/schemas/accountGroup'
  *     responses:
  *       200:
- *         description: success create user
+ *         description: success create an account group
  *         contents:
  *            application/json:
  *              schema:

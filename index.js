@@ -7,7 +7,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 require("dotenv").config();
 
-const {accountAPI, accountGroupAPI, authAPI, expenseAPI, incomeAPI, seedAPI, transactionAPI, userAPI} = require("./api");
+const {accountAPI, accountGroupAPI, authAPI, expenseCategoryAPI, expenseSubcategoryAPI, incomeAPI, seedAPI, transactionAPI, userAPI} = require("./api");
 const { app } = require("firebase-admin");
 const server = express();
 
@@ -33,7 +33,8 @@ server.use(bodyParser.json());
 server.use(accountAPI);
 server.use(accountGroupAPI);
 server.use(authAPI);
-server.use(expenseAPI);
+server.use(expenseCategoryAPI);
+server.use(expenseSubcategoryAPI);
 server.use(incomeAPI);
 server.use(seedAPI);
 server.use(transactionAPI);
