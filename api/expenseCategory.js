@@ -1,53 +1,55 @@
-const express = require("express");
-const router = express.Router();
 
-const { createAccountGroup, 
-        deleteAccoutGroup,
-        getAccountGroup,
-        updateAccountGroup
-    } = require("../controller/accountGroup");
+const express = require("express");
+const router = express.Router()
+
+const {
+    createExpenseCategory,
+    deleteExpenseCategory,
+    getExpenseCategory,
+    updateExpenseCategory
+} = require("../controller/expenseCategory");
 
 /**
- * @swagger
- * components:
- *   schemas:
- *     accountGroup:
- *       type: object
- *       properties:
- *         user:
- *           type: string
- *           description: userId
- *         name:
- *           type: string
- *           description: account group name
- *       example:
- *         user: 6346db58e7cfa506c29054cb
- *         name: Debit Card
- */ 
+* @swagger
+* components:
+*   schemas:
+*     expenseCategory:
+*       type: object
+*       properties:
+*         user:
+*           type: string
+*           description: userId
+*         name:
+*           type: string
+*           description: account name
+*       example:
+*         user: 6346db58e7cfa506c29054cb
+*         name: Utilities
+*/
 
 /**
  * @swagger
  * tags:
- *   name: Account Group
- *   description: Account group managing API
+ *   name: Expense Category
+ *   description: Expense category managing API
  */
 
 /**
  * @swagger
- * /account-group:
+ * /expense-category:
  *   post:
- *     summary: Create an account group
- *     tags: [Account Group]
+ *     summary: Create an expense category
+ *     tags: [Expense Category]
  *     requestBody:
- *       description: Payload data to create an account group
+ *       description: Payload data to create an expense category
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/accountGroup'
+ *             $ref: '#/components/schemas/expenseCategory'
  *     responses:
  *       200:
- *         description: success create an account group
+ *         description: success create expense category
  *         contents:
  *            application/json:
  *              schema:
@@ -65,23 +67,23 @@ const { createAccountGroup,
  *              schema:
  *                message: string
  */
-router.post("/account-group", createAccountGroup);
+router.post("/expense-category", createExpenseCategory);
 
 /**
  * @swagger
- * /account-group/{accountGroupId}:
+ * /expense-category/{expenseCategoryId}:
  *   delete:
- *     summary: Delete an account group
+ *     summary: Delete an expense category
  *     parameters:
  *       - in: path
- *         name: accountGroupId
+ *         name: expenseCategoryId
  *         schema:
  *           type: string
  *           required: true
- *     tags: [Account Group]
+ *     tags: [Expense Category]
  *     responses:
  *       200:
- *         description: success delete account group
+ *         description: success delete expense category
  *         contents:
  *            application/json:
  *              schema:
@@ -93,23 +95,23 @@ router.post("/account-group", createAccountGroup);
  *              schema:
  *                message: string
  */
- router.delete("/account-group/:accountGroupId", deleteAccoutGroup);
+router.delete("/expense-category/:expenseCategoryId", deleteExpenseCategory)
 
- /**
+/**
  * @swagger
- * /account-group/{userId}:
+ * /expense-category/{userId}:
  *   get:
- *     summary: Get all account group of a user 
+ *     summary: Get all expense category of a user 
  *     parameters:
  *       - in: path
  *         name: userId
  *         schema:
  *           type: string
  *           required: true
- *     tags: [Account Group]
+ *     tags: [Expense Category]
  *     responses:
  *       200:
- *         description: success get account group
+ *         description: success get expense category
  *         contents:
  *            application/json:
  *              schema:
@@ -121,22 +123,22 @@ router.post("/account-group", createAccountGroup);
  *              schema:
  *                message: string
  */
-router.get("/account-group/:userId", getAccountGroup);
+router.get("/expense-category/:userId", getExpenseCategory);
 
 /**
  * @swagger
- * /account-group/{accountGroupId}:
+ * /expense-category/{expenseCategoryId}:
  *   put:
- *     summary: Update an account group 
+ *     summary: Update an expense category
  *     parameters:
  *       - in: path
- *         name: accountGroupId
+ *         name: expenseCategoryId
  *         schema:
  *           type: string
  *           required: true
- *     tags: [Account Group]
+ *     tags: [Expense Category]
  *     requestBody:
- *       description: Payload data to update account group
+ *       description: Payload data to update expense category
  *       required: true
  *       content:
  *         application/json:
@@ -146,10 +148,10 @@ router.get("/account-group/:userId", getAccountGroup);
  *               name:
  *                 type: string
  *             example:
- *               name: Debit Card
+ *               name: Utilities
  *     responses:
  *       200:
- *         description: success update account group
+ *         description: success update expense category
  *         contents:
  *            application/json:
  *              schema:
@@ -161,6 +163,6 @@ router.get("/account-group/:userId", getAccountGroup);
  *              schema:
  *                message: string
  */
- router.put("/account-group/:accountGroupId", updateAccountGroup);
+ router.put("/expense-category/:expenseCategoryId", updateExpenseCategory);
 
 module.exports = router;

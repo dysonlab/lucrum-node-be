@@ -1,7 +1,8 @@
 exports.accountAPI = require("./account");
 exports.accountGroupAPI = require("./accountGroup");
 exports.authAPI = require("./auth");
-exports.expenseAPI = require("./expense");
+exports.expenseCategoryAPI = require("./expenseCategory");
+exports.expenseSubcategoryAPI = require("./expenseSubcategory");
 exports.incomeAPI = require("./income");
 exports.seedAPI = require("./seed");
 exports.transactionAPI = require("./transaction");
