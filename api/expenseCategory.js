@@ -55,7 +55,7 @@ const {
  *              schema:
  *                message: string
  *       409:
- *         description: conflict create account group
+ *         description: conflict create expense category
  *         contents:
  *            application/json:
  *              schema:
