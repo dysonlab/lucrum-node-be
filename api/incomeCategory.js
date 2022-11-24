@@ -3,23 +3,20 @@ const express = require("express");
 const router = express.Router()
 
 const {
-    createExpenseSubcategory,
-    deleteExpenseSubcategory,
-    getExpenseSubcategory,
-    updateExpenseSubcategory,
-} = require("../controller/expenseSubcategory");
+    createIncomeCategory,
+    deleteIncomeCategory,
+    getIncomeCategory,
+    updateIncomeCategory
+} = require("../controller/incomeCategory");
 
 /**
 * @swagger
 * components:
 *   schemas:
-*     expenseSubcategory:
+*     incomeCategory:
 *       type: object
 *       properties:
 *         user:
-*           type: string
-*           description: userId
-*         expenseCategory:
 *           type: string
 *           description: userId
 *         name:
@@ -27,39 +24,38 @@ const {
 *           description: account name
 *       example:
 *         user: 6346db58e7cfa506c29054cb
-*         expenseCategory: 637ad206054b18c94639ccb0
-*         name: Gas
+*         name: Investment
 */
 
 /**
  * @swagger
  * tags:
- *   name: Expense Subcategory
- *   description: Expense subcategory managing API
+ *   name: Income Category
+ *   description: Income category managing API
  */
 
 /**
  * @swagger
- * /expense-subcategory:
+ * /income-category:
  *   post:
- *     summary: Create an expense subcategory
- *     tags: [Expense Subcategory]
+ *     summary: Create an income category
+ *     tags: [Income Category]
  *     requestBody:
- *       description: Payload data to create an expense subcategory
+ *       description: Payload data to create an income category
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/expenseSubcategory'
+ *             $ref: '#/components/schemas/incomeCategory'
  *     responses:
  *       200:
- *         description: success create expense subcategory
+ *         description: success create income category
  *         contents:
  *            application/json:
  *              schema:
  *                message: string
  *       409:
- *         description: conflict create expense subcategory
+ *         description: conflict create income category
  *         contents:
  *            application/json:
  *              schema:
@@ -71,23 +67,23 @@ const {
  *              schema:
  *                message: string
  */
-router.post("/expense-subcategory", createExpenseSubcategory);
+router.post("/income-category", createIncomeCategory);
 
 /**
  * @swagger
- * /expense-subcategory/{expenseSubcategoryId}:
+ * /income-category/{incomeCategoryId}:
  *   delete:
- *     summary: Delete an expense category
+ *     summary: Delete an income category
  *     parameters:
  *       - in: path
- *         name: expenseSubcategoryId
+ *         name: incomeCategoryId
  *         schema:
  *           type: string
  *           required: true
- *     tags: [Expense Subcategory]
+ *     tags: [Income Category]
  *     responses:
  *       200:
- *         description: success delete expense subcategory
+ *         description: success delete income category
  *         contents:
  *            application/json:
  *              schema:
@@ -99,23 +95,23 @@ router.post("/expense-subcategory", createExpenseSubcategory);
  *              schema:
  *                message: string
  */
-router.delete("/expense-subcategory/:expenseSubcategoryId", deleteExpenseSubcategory)
+router.delete("/income-category/:incomeCategoryId", deleteIncomeCategory)
 
 /**
  * @swagger
- * /expense-subcategory/{userId}:
+ * /income-category/{userId}:
  *   get:
- *     summary: Get all expense subcategory of a user 
+ *     summary: Get all income category of a user 
  *     parameters:
  *       - in: path
  *         name: userId
  *         schema:
  *           type: string
  *           required: true
- *     tags: [Expense Subcategory]
+ *     tags: [Income Category]
  *     responses:
  *       200:
- *         description: success get expense subcategory
+ *         description: success get income category
  *         contents:
  *            application/json:
  *              schema:
@@ -127,38 +123,35 @@ router.delete("/expense-subcategory/:expenseSubcategoryId", deleteExpenseSubcate
  *              schema:
  *                message: string
  */
-router.get("/expense-subcategory/:userId", getExpenseSubcategory);
+router.get("/income-category/:userId", getIncomeCategory);
 
 /**
  * @swagger
- * /expense-subcategory/{expenseSubcategoryId}:
+ * /income-category/{incomeCategoryId}:
  *   put:
- *     summary: Update an expense category
+ *     summary: Update an income category
  *     parameters:
  *       - in: path
- *         name: expenseSubcategoryId
+ *         name: incomeCategoryId
  *         schema:
  *           type: string
  *           required: true
- *     tags: [Expense Subcategory]
+ *     tags: [Income Category]
  *     requestBody:
- *       description: Payload data to update expense subcategory
+ *       description: Payload data to update income category
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
  *             properties:
- *               expenseCategory:
- *                 type: string
  *               name:
  *                 type: string
  *             example:
- *               expenseCategory: 637ad206054b18c94639ccb0
- *               name: Gas
+ *               name: Salary
  *     responses:
  *       200:
- *         description: success update expense subcategory
+ *         description: success update income category
  *         contents:
  *            application/json:
  *              schema:
@@ -170,6 +163,6 @@ router.get("/expense-subcategory/:userId", getExpenseSubcategory);
  *              schema:
  *                message: string
  */
-router.put("/expense-subcategory/:expenseSubcategoryId", updateExpenseSubcategory)
+ router.put("/income-category/:incomeCategoryId", updateIncomeCategory);
 
 module.exports = router;

@@ -29,7 +29,7 @@ exports.deleteExpenseCategory = async (req, res) => {
 
   try{
     await expense_category.deleteOne({ _id: expenseCategoryId}).exec();
-    return res.status(200).json({message: `account ${expenseCategoryId} is deleted`})
+    return res.status(200).json({message: `expnese ${expenseCategoryId} is deleted`})
   }catch(error){
     console.log(error)
     return res.status(500).json({ message: "internal server error" });
