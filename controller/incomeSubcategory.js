@@ -1,6 +1,6 @@
 const {income_subcategory} = require("../model");
 
-exports.createIncomeSubCategory = (req, res) => {
+exports.createIncomeSubcategory = (req, res) => {
   // deconstruct request body
   const {user, incomeCategory, name} = req.body;
   // create model
