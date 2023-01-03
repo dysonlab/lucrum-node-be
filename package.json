@@ -19,8 +19,12 @@
     "dotenv": "^16.0.3",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.24.1",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
+    "nodemailer": "^6.8.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^2.0.20",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"

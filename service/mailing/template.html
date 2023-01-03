@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Address Confirmation</title>
+
+    <!-- LINK -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+        :root {
+            --color-primary: #14121F;
+            --color-white: #FFFFFF;
+            --color-white-backgroud: #F6F6F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            border: none;
+        }
+
+        body {
+            background-color: var(--color-white-backgroud);
+            display: flex;
+            flex-direction: column;
+        }
+
+        p {
+            font-weight: 200;
+            margin-top: 10px;
+        }
+
+        a {
+            font-weight: 500;
+        }
+
+        .header {
+            display: flex;
+            text-align: center;
+        }
+
+        .brand {
+            width: 300px;
+            margin: auto;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 50px;
+            padding: 50px;
+            padding-bottom: 80px;
+            background-color: var(--color-white);
+            width: 80%;
+        }
+
+        .hand {
+            padding-top: 20px;
+        }
+
+        .confirm-container {
+            margin-top: 55px;
+        }
+
+        .confirm-btn {
+            margin: auto;
+            text-decoration: none;
+            text-align: center;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding-top: 20px;
+            padding-right: 60px;
+            padding-bottom: 20px;
+            padding-left: 60px;
+            margin-top: 35px;
+            transition: all 500ms ease;
+            box-shadow: 0.4rem 0.4rem 0.2rem rgba(0, 0, 0, 0.5);
+        }
+
+        .confirm-btn:hover {
+            box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img class="brand" src="https://storage.googleapis.com/lucrum/brand0_lucrum.png" alt="">
+    </div>
+
+    <div class="content">
+        <div>
+            <span class="material-symbols-outlined hand">
+                waving_hand
+            </span>
+            <span> Hi, {{firstName}}</span>
+        </div>
+
+        <p>Thank you for using lucrum personal finance app. This is a free and opensource application from <a
+                target="_blank" href="https://dysonlab.net/">dysoblab</a>, a custom software solution vendor. </p>
+        <p>Plase confirm your email address before to proceed. We hope you enjoy it!</p>
+        <div class="confirm-container">
+            <a class="confirm-btn" href="">CONFIRM</a>
+        </div>
+    </div>
+</body>
+
+</html>
