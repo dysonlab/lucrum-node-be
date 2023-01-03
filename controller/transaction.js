@@ -5,7 +5,6 @@ exports.createTransaction = (req, res) => {
   const {
     user,
     account,
-    date,
     expenseAmount,
     expenseCategory,
     expenseSubCategory,
@@ -16,14 +15,11 @@ exports.createTransaction = (req, res) => {
     transferTo,
     transferFees,
     note,
-    image,
   } = req.body;
   // create model
   const newTransaction = new transaction({
     user: user,
     account: account,
-    // date input should be generated from client
-    // *for testing only*
     date: Date.now(),
     expenseAmount: expenseAmount,
     expenseCategory: expenseCategory,
@@ -35,7 +31,7 @@ exports.createTransaction = (req, res) => {
     transferAmount: transferAmount,
     transferFees: transferFees,
     note: note,
-    image: image,
+    image: "",
   });
   // create new transaction
   newTransaction.save((error, result) => {
@@ -49,27 +45,55 @@ exports.createTransaction = (req, res) => {
   });
 };
 
-exports.readTransactions = (req, res) => {
+exports.getTransaction = async (req, res) => {
   // deconstruct request body
-  const {user} = req.body;
+  const { userId } = req.params;
   // find by user id
-  transaction.find({user: user}, (error, result) => {
-    if (error) {
-      console.log(error);
-      return res.status(500).json({message: "internal server error"});
-    } else {
-      return res.status(200).json({message: "success read transactions", transactions: result});
-    }
-  });
+  try{
+    const result = await transaction.find({user:userId}).exec()
+    console.log(userId)
+    console.log(result)
+    return res.status(200).json({ message: `success get expense category`, transaction: result });
+  }catch(error){
+    console.log(error)
+    return res.status(500).json({ message: `cannot find expense category from user ${userId}` });
+  }
 };
 
 exports.updateTransaction = (req, res) => {
   // deconstruct request paramaters
-  const {_id} = req.params;
+  const {transactionId} = req.params;
   // deconstruct request body
-  const {newTransaction} = req.body;
+  const {
+    account,
+    date,
+    expenseAmount,
+    expenseCategory,
+    expenseSubCategory,
+    incomeAmount,
+    incomeCategory,
+    incomeSubCategory,
+    transferAmount,
+    transferTo,
+    transferFees,
+    note, 
+  } = req.body;
   // find by id and update
-  transaction.findByIdAndUpdate(_id, newTransaction, {new: true}, (error, result) => {
+  transaction.findByIdAndUpdate(transactionId, {
+    account: account,
+    date: date,
+    expenseAmount: expenseAmount,
+    expenseCategory: expenseCategory,
+    expenseSubCategory: expenseSubCategory,
+    incomeAmount: incomeAmount,
+    incomeCategory: incomeCategory,
+    incomeSubCategory: incomeSubCategory,
+    transferTo: transferTo,
+    transferAmount: transferAmount,
+    transferFees: transferFees,
+    note: note,
+    image: "",
+  }, {new: true}, (error, result) => {
     if (error) {
       console.log(error);
       return res.status(500).json({message: "internal server error"});
@@ -81,9 +105,9 @@ exports.updateTransaction = (req, res) => {
 
 exports.deleteTransaction = (req, res) => {
   // deconstruct request paramaters
-  const {_id} = req.params;
+  const { transactionId } = req.params;
   // delete transaction
-  transaction.findByIdAndDelete(_id, (error, result) => {
+  transaction.findByIdAndDelete(transactionId, (error, result) => {
     if (error) {
       console.log(error);
       return res.status(500).json({message: "internal server error"});

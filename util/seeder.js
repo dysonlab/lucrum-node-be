@@ -322,7 +322,7 @@ class Seeder {
                 0));
 
             var eachTransaction = {
-                user: this.userId,
+                user: randomAccount.user,
                 date: eachDate,
                 account: randomAccount._id,
                 expenseAmount: amount,
