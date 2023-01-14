@@ -9,9 +9,6 @@ const handlebars = require("handlebars")
 const emailAddress = "dysonlab.service@gmail.com"
 const emailPassword = "ghfttttsosevzfqi"
 
-console.log("nodemailer() user", emailAddress)
-console.log("nodemailer() pass", emailPassword)
-
 const readHTMLFile = function(path, callback){
     fs.readFile(path, {encoding:"utf-8"}, function(err, html){
         if(err){
@@ -31,31 +28,34 @@ const transporter = nodemailer.createTransport(smtpTransport({
     }
 }));
 
-readHTMLFile(`${__dirname}/templateConfirmation.html`, function(err,html){
-    if (err) {
-        console.log("readHTMLFile() error", err);
-        return;
-     }
-     const template = handlebars.compile(html);
-     const replacements = {
-        firstname: "Reizkian"
-     }
-     const htmlToSend = template(replacements)
-     const mailOptions = {
-        from: emailAddress,
-        to: "reizkianyesaya@gmail.com",
-        subject: "Account Confirmation",
-        html: htmlToSend
-    }
 
-    transporter.sendMail(mailOptions, function(err, response){
+exports.sendConfirmationEmail = async(user) => {
+    readHTMLFile(`${__dirname}/templateConfirmation.html`, function(err,html){
         if (err) {
-            console.log("sendMail() error", err);
+            console.log("readHTMLFile() error", err);
             return;
          }
-         else
-         {
-            console.log("sendMail() response", response)
+         const template = handlebars.compile(html);
+         const replacements = {
+            firstName: user.firstName
          }
-    })
-});
+         const htmlToSend = template(replacements)
+         const mailOptions = {
+            from: emailAddress,
+            to: user.email,
+            subject: "Account Confirmation",
+            html: htmlToSend
+        }
+    
+        transporter.sendMail(mailOptions, function(err, response){
+            if (err) {
+                console.log("sendMail() error", err);
+                return;
+             }
+             else
+             {
+                console.log("sendMail() response", response)
+             }
+        })
+    });
+}

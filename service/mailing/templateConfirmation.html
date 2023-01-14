@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Address Confirmation</title>
+    <title>Lucrum - Email Address Confirmation</title>
 
     <!-- LINK -->
     <link rel="stylesheet"
@@ -18,32 +19,99 @@
 
     <!-- CSS -->
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            border: none;
+        }
 
+        body {
+            margin: 0;
+            background-color: #F6F6F6;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        img {
+            border: 0;
+        }
+
+        p {
+            font-weight: 200;
+            margin-top: 10px;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #F6F6F6;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
     </style>
 </head>
 
-<body style="font-family: 'Poppins', sans-serif; background-color: #F6F6F6; display: flex; flex-direction: column;">
-    <table width="100%" border="0">
-        <tr>
-            <td colspan="3">
-                <img style="width: 285px;" src="https://storage.googleapis.com/lucrum/brand0_lucrum.png" alt="">
-            </td>
-        </tr>
-        <tr valign="top">
-            <td bgcolor="black" width="10%"></td>
-            <td>
-                <span> Hi, {{firstName}}</span>
-                <p>Thank you for using lucrum personal finance app. This is a free and opensource application from <a
-                        target="_blank" href="https://dysonlab.net/">dysoblab</a>, a custom software solution vendor.
-                </p>
-                <p>Plase confirm your email address before to proceed. We hope you enjoy it!</p>
-                <div>
-                    <a class="confirm-btn" href="">CONFIRM</a>
-                </div>
-            </td>
-            <td bgcolor="black" width="10%"></td>
-        </tr>
-    </table>
+<body>
+    <center class="wrapper">
+        <table class="main" width="100%">
+            <tr>
+                <td style="text-align: center; padding-top: 65px;">
+                    <img src="https://storage.googleapis.com/lucrum/brand0_lucrum.png" style="width: 300px;" alt="">
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 50px; padding-bottom: 100px;">
+                    <table width="80%"
+                        style="background-color: white; padding:30px; margin-left: auto; margin-right: auto;">
+                        <tr>
+                            <td>
+                                <div style="text-align: left;">
+                                    <img src="https://storage.googleapis.com/lucrum/waving_hand.png" width="20px" style="margin-right: 3px;" alt="">
+                                    <span> Hi, {{firstName}}</span>
+                                    <p>Thank you for using lucrum personal finance app. This is a free and opensource
+                                        application
+                                        from <a target="_blank" href="https://dysonlab.net/">dysoblab</a>, a custom
+                                        software
+                                        solution vendor. </p>
+                                    <p>Plase confirm your email address before to proceed. We hope you enjoy it!</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; padding-top: 50px; padding-bottom: 30px;">
+                                <a href="https://www.w3schools.com/howto/howto_css_table_center.asp" style="margin: auto;
+                                text-decoration: none;
+                                text-align: center;
+                                background-color: #14121F;
+                                color: white;
+                                padding-top: 20px;
+                                padding-right: 60px;
+                                padding-bottom: 20px;
+                                padding-left: 60px;
+                                margin-top: 35px;
+                                transition: all 1000ms ease;
+                                cursor: pointer;
+                                box-shadow: 0.4rem 0.4rem 0.2rem rgba(0, 0, 0, 0.5);">CONFIRM</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </center>
 </body>
-
 </html>

@@ -1,5 +1,5 @@
 const { account, account_group, expense_category, expense_subcategory, income_category, income_subcategory, transaction, user } = require("../model");
-
+const { sendConfirmationEmail } = require("../service/mailing/email")
 exports.createUser = (req, res) => {
   // deconstruct request body
   const { firstName, lastName, email, phone, password } = req.body;
@@ -21,10 +21,10 @@ exports.createUser = (req, res) => {
         return res.status(409).json({ message: `user ${email} already exists` });
       }
       return res.status(500).json({ message: "internal server error" });
-    } else {
-      console.log(`success create user ${result._id}`);
-      return res.status(200).json({ message: `success create user ${result._id}`, user: result });
     }
+    console.log(`success create user ${result._id}`);
+    sendConfirmationEmail(newUser)
+    return res.status(200).json({ message: `success create user ${result._id}`, user: result });
   });
 };
 
@@ -55,7 +55,7 @@ exports.getUser = async (req, res) => {
   try {
     const result = await user.findById({ _id: userId }).exec()
     return res.status(200).json({ message: `success get user ${result._id}`, user: result });
-  }catch(error){
+  } catch (error) {
     return res.status(500).json({ message: `cannot find user ${userId}` });
   }
 }
@@ -68,13 +68,13 @@ exports.updateUser = async (req, res) => {
   console.log(req.body)
   try {
     const result = await user.findByIdAndUpdate(userId, {
-      firstName: firstName, 
-      lastName: lastName, 
-      email: email, 
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
       phone: phone,
     }).exec();
     return res.status(200).json({ message: `success update user ${result._id}`, user: result });
-  }catch(error){
+  } catch (error) {
     return res.status(500).json({ message: `error updating user ${userId}` });
   }
 }
