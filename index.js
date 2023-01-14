@@ -1,4 +1,3 @@
-const functions = require("firebase-functions");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -18,7 +17,7 @@ const { accountAPI,
         transactionAPI,
         userAPI
       } = require("./api");
-// const { app } = require("firebase-admin");
+      
 const server = express();
 
 const options = {
