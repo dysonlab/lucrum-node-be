@@ -28,7 +28,7 @@ const options = {
       version: "1.0.0",
       description: "A personal finance app by dysonlab",
     },
-    servers: [{url: `http://localhost:7000`}]
+    servers: [{url: `http://localhost:7000`}, {url: process.env.PRODUCTION_SERVER_URI}]
   },
   apis: ["./api/*.js"]
 }
