@@ -18,7 +18,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.24.1",
+    "firebase-functions": "^4.2.0",
     "fs": "^0.0.1-security",
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",

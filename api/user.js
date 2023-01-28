@@ -4,7 +4,8 @@ const router = express.Router();
 const { createUser, 
         deleteUser,
         getUser, 
-        updateUser 
+        updateUser,
+        verifyEmail, 
     } = require("../controller/user");
 
 /**
@@ -183,5 +184,33 @@ router.get("/user/:userId", getUser);
  *                message: string
  */
 router.put("/user/:userId", updateUser);
+
+/**
+ * @swagger
+ * /user/verify/{userId}:
+ *   get:
+ *     summary: Verify user email
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *           required: true
+ *     tags: [User]
+ *     responses:
+ *       200:
+ *         description: success verify email  user
+ *         contents:
+ *            application/json:
+ *              schema:
+ *                message: string
+ *       500:
+ *         description: internal server error
+ *         contents:
+ *            application/json:
+ *              schema:
+ *                message: string
+ */
+router.put("/user/verify/:userId", verifyEmail);
 
 module.exports = router;

@@ -1,23 +1,24 @@
+const functions = require("firebase-functions");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-require("dotenv").config();
+const { constant } = require("./config/constant")
 
 const { accountAPI,
-        accountGroupAPI, 
-        authAPI, 
-        expenseCategoryAPI, 
-        expenseSubcategoryAPI, 
-        incomeCategoryAPI,
-        incomeSubcategoryAPI,
-        seedAPI, 
-        transactionAPI,
-        userAPI
-      } = require("./api");
-      
+  accountGroupAPI,
+  authAPI,
+  expenseCategoryAPI,
+  expenseSubcategoryAPI,
+  incomeCategoryAPI,
+  incomeSubcategoryAPI,
+  seedAPI,
+  transactionAPI,
+  userAPI
+} = require("./api");
+
 const server = express();
 
 const options = {
@@ -28,16 +29,18 @@ const options = {
       version: "1.0.0",
       description: "A personal finance app by dysonlab",
     },
-    servers: [{url: `http://localhost:7000`}, {url: process.env.PRODUCTION_SERVER_URI}]
+    servers: [
+      { url: `http://localhost:5000` },
+      { url: `http://localhost:5000/lucrum-be-2f472/us-central1/server` },
+      { url: `https://us-central1-lucrum-be-2f472.cloudfunctions.net/server` },
+    ]
   },
   apis: ["./api/*.js"]
 }
 
 const specs = swaggerJsDoc(options)
-
-server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs))
-
 server.use(cors());
+server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs))
 server.use(bodyParser.json());
 server.use(accountAPI);
 server.use(accountGroupAPI);
@@ -50,12 +53,20 @@ server.use(seedAPI);
 server.use(transactionAPI);
 server.use(userAPI);
 
+server.get('/', (req, res) => {
+  res.send('lucrum-node-be')
+})
+
 // datbase connection
-mongoose.connect(process.env.MONGODB_URI, () => {
-  console.log(`connected ${process.env.MONGODB_URI}`);
+mongoose.connect(constant.MONGODB_URI, () => {
+  console.log(`connected ${constant.MONGODB_URI}`);
 });
 
-// exports.lucrum = functions.https.onRequest(server);
-server.listen(process.env.PORT, () => {
-  console.log(`Server listening on PORT:${process.env.PORT}`);
-});
+// run local development server
+if(!constant.IS_PRODUCTION){
+  server.listen(5000, () => { console.log(`Server listening on PORT:5000`); })
+  return;
+};
+
+// export server instance
+exports.server = functions.https.onRequest(server)
