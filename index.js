@@ -29,9 +29,7 @@ const options = {
       description: "A personal finance app by dysonlab",
     },
     servers: [
-      { url: `http://localhost:5000` },
-      { url: `http://localhost:5000/lucrum-be-2f472/us-central1/server` },
-      { url: `https://us-central1-lucrum-be-2f472.cloudfunctions.net/server` },
+      { url: `http://localhost:7000` },
     ]
   },
   apis: ["./api/*.js"]

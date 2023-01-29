@@ -35,7 +35,7 @@ const { createUser,
  *         lastName: Sins
  *         email: sins@gmail.com
  *         phone: +1425i4902352
- *         password: pwd123
+ *         password: password123
  */ 
 
 /**
