@@ -10,6 +10,7 @@ const userSchema = new Schema({
   password: String,
   createdAt: Number,
   lastLogon: Number,
+  isEmailVerified: { type: Boolean, required: false, default: false },
 });
 
 // middleware hash password

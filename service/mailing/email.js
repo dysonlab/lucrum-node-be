@@ -2,12 +2,10 @@ const fs = require("fs")
 const nodemailer = require("nodemailer")
 const smtpTransport = require("nodemailer-smtp-transport")
 const handlebars = require("handlebars")
+const { constant } = require("../../config/constant")
 
-// const emailAddress = process.env.EMAIL_ADDRESS
-// const emailPassword = process.env.EMAIL_PASSWORD
-
-const emailAddress = "dysonlab.service@gmail.com"
-const emailPassword = "ghfttttsosevzfqi"
+const emailAddress = constant.SERVICE_MAILING_ADDRESS
+const emailPassword = constant.SERVICE_MAILING_PASSWORD
 
 const readHTMLFile = function(path, callback){
     fs.readFile(path, {encoding:"utf-8"}, function(err, html){
@@ -30,7 +28,7 @@ const transporter = nodemailer.createTransport(smtpTransport({
 
 
 exports.sendConfirmationEmail = async(user) => {
-    readHTMLFile(`${__dirname}/templateConfirmation.html`, function(err,html){
+    readHTMLFile(`${__dirname}/template/confirmation.html`, function(err,html){
         if (err) {
             console.log("readHTMLFile() error", err);
             return;
@@ -43,6 +41,7 @@ exports.sendConfirmationEmail = async(user) => {
          const mailOptions = {
             from: emailAddress,
             to: user.email,
+            userId: user._id, 
             subject: "Account Confirmation",
             html: htmlToSend
         }
