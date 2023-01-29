@@ -1,4 +1,3 @@
-const functions = require("firebase-functions");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -53,20 +52,9 @@ server.use(seedAPI);
 server.use(transactionAPI);
 server.use(userAPI);
 
-server.get('/', (req, res) => {
-  res.send('lucrum-node-be')
-})
-
 // datbase connection
 mongoose.connect(constant.MONGODB_URI, () => {
   console.log(`connected ${constant.MONGODB_URI}`);
 });
 
-// run local development server
-if(!constant.IS_PRODUCTION){
-  server.listen(5000, () => { console.log(`Server listening on PORT:5000`); })
-  return;
-};
-
-// export server instance
-exports.server = functions.https.onRequest(server)
+server.listen(constant.PORT, () => { console.log(`Server listening on PORT:${constant.PORT}`); })
